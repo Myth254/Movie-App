@@ -1,0 +1,200 @@
+/* ---------- Tokens ---------- */
+:root {
+    --bg: #14171f;
+    --surface: #1d212c;
+    --border: #2c3242;
+    --text: #e8eaf0;
+    --muted: #9aa1b2;
+    --accent: #f2b84b;
+    --accent-text: #1a1405;
+    --radius: 8px;
+    color-scheme: dark;
+}
+
+/* ---------- Reset & base ---------- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* ---------- Header & search ---------- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    padding: 16px 80px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+}
+
+header > div {
+    display: flex;
+    gap: 8px;
+    flex: 1 1 280px;
+    max-width: 440px;
+}
+
+#searchMovie {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font: inherit;
+}
+
+#searchMovie::placeholder {
+    color: var(--muted);
+}
+
+/* ---------- Buttons ---------- */
+button {
+    padding: 10px 18px;
+    background: var(--accent);
+    color: var(--accent-text);
+    border: none;
+    border-radius: var(--radius);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(1.1);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:focus-visible,
+#searchMovie:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ---------- Status messages ---------- */
+#loading-spinner,
+#error-message {
+    padding: 16px 80px 0;
+    text-align: center;
+    color: var(--muted);
+}
+
+/* ---------- Movie grid ---------- */
+#movieContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 80px;
+}
+
+.movieBox {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-align: center;
+}
+
+.movieBox > img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 2 / 3;       /* reserves space so the grid doesn't jump while posters load */
+    object-fit: cover;
+    background: var(--bg);
+}
+
+.movieBox h3 {
+    font-size: 1rem;
+    padding: 12px 12px 4px;
+    margin: 0;
+}
+
+.movieScore {
+    padding: 0 12px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.movieDesc {
+    --desc-font-size: 0.875rem;
+    --desc-line-height: 1.4;
+    --desc-lines: 5;
+
+    padding: 8px 12px 14px;
+    font-size: var(--desc-font-size);
+    line-height: var(--desc-line-height);
+    color: var(--muted);
+    text-align: left;
+    /* fixed height = 5 lines of text + vertical padding (8px + 14px),
+       so short and long overviews take up the same space */
+    height: calc(var(--desc-font-size) * var(--desc-line-height) * var(--desc-lines) + 22px);
+    /* cut long overviews off at 5 lines with an ellipsis */
+    display: -webkit-box;
+    -webkit-line-clamp: var(--desc-lines);
+    line-clamp: var(--desc-lines);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ---------- Pagination ---------- */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 8px 20px 40px;
+}
+
+#pageNo {
+    min-width: 8ch;
+    text-align: center;
+    color: var(--muted);
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 700px) {
+    header,
+    #movieContainer,
+    #loading-spinner,
+    #error-message {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    header > div {
+        max-width: none;
+    }
+
+    #movieContainer {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+    }
+}

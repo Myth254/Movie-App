@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies Database</title>
+</head>
+<body>
+    <header>
+        <h1>MOVIES.net</h1>
+        <div>
+            <input type="text" name="searchMovie" id="searchMovie" placeholder="Movie name e.g. Black panther...">
+            <button id="searchMovieBtn" type="submit">Search</button>
+        </div>
+    </header>
+    
+    <div id="loading-spinner" style="display: none;">⏳ Loading...</div>
+    <div id="error-message" style="display: none; color: red;"></div>
+    <div id="movieContainer"></div>
+
+    <div class="pagination">
+        <button id="prevBtn">Prev</button>
+        <span id="pageNo"></span>
+        <button id="nextBtn">Next</button>
+    </div>
+</body>
+</html>
