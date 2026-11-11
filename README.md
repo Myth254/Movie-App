@@ -2,6 +2,10 @@
 
 MOVIES.net is a simple movie browser built with JavaScript and webpack. It uses [The Movie Database API](https://www.themoviedb.org/documentation/api) to show popular movies by default and lets users search for movie titles, browse paginated results, and view posters, scores, and overviews.
 
+## Preview
+
+![MOVIES.net showing movie search and popular movie cards](screenshots/movie-app.png)
+
 ## Features
 
 - Popular movies loaded on page load
